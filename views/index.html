@@ -2,9 +2,28 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <!--手机开发屏幕自适应-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <!--可使得苹果设备上运行的更好-->
+    <!--告诉苹果设备，这个网页可以做出一个web app-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--告诉苹果设备，再次打开是全屏显示的-->
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--苹果web app应用时，图标-->
+    <link rel="apple-touch-icon" href="#">
+    <meta name="format-detection" content="telephone=no">
     <title>Owulia图书商城</title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link href="../public/css/index.css">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-
+    <h1 id="container" v-text="title"></h1>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../public/script/index.js"></script>
 </body>
 </html>
