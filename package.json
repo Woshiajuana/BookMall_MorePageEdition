@@ -1,0 +1,19 @@
+{
+  "name": "bookmall",
+  "version": "1.0.0",
+  "description": "图书商城多页面版本",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "bootstrap"
+  ],
+  "author": "woshiajuana",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "vue": "^2.2.1"
+  }
+}
