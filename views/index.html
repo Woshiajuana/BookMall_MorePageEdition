@@ -20,7 +20,7 @@
 <body>
 
     <!--导航条-->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" id="navBar">
         <!--占据全屏宽度-->
         <div class="container-fluid">
             <!--导航条主体-->
@@ -70,10 +70,21 @@
                 </form>
                 <!--/搜索部分-->
                 <!--导航条右边部分-->
-                <ul class="nav navbar-nav navbar-right">
+                <!--用户登录之前-->
+                <ul v-if="!is_login" class="nav navbar-nav navbar-right">
                     <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
                     <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
                 </ul>
+                <!--/用户登录之前-->
+                <!--用户登录之后-->
+                <ul v-if="is_login" class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span v-text="user_name"></span></a>
+                    </li>
+                    <li><a href="javascript:;"><span class="glyphicon glyphicon-shopping-cart"></span> 购物车</a></li>
+                    <li><a href="javascript:;" @click="loginOut()"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                </ul>
+                <!--/用户登录之后-->
                 <!--/导航条右边部分-->
             </div>
             <!--/可变动的导航条-->
