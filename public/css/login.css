@@ -1,7 +1,31 @@
 @charset "UTF-8";
+.rem-box {
+  position: relative; }
+
+.rem-icon {
+  position: absolute; }
+
 .user-container {
   min-height: 650px;
   margin-top: 170px; }
+
+.panel-error {
+  height: 20px; }
+
+.rem-box.active .rem-icon {
+  background-color: #333; }
+
+.rem-icon {
+  left: 0;
+  top: 50%;
+  margin-top: -7px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #999;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
 .footer {
   margin-top: 50px;

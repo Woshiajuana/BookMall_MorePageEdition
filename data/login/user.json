@@ -1,0 +1,10 @@
+{
+  "status": 1,
+  "msg": "登录成功",
+  "user":{
+    "user_id": "1",
+    "user_name": "woshiajuana",
+    "user_password": "123456",
+    "user_email" : "979703986@qq.com"
+  }
+}
