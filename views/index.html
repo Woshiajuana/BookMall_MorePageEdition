@@ -1,29 +1,321 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+    <!--设置字符编码-->
     <meta charset="UTF-8">
     <!--手机开发屏幕自适应-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <!--可使得苹果设备上运行的更好-->
-    <!--告诉苹果设备，这个网页可以做出一个web app-->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <!--告诉苹果设备，再次打开是全屏显示的-->
-    <meta name="apple-touch-fullscreen" content="YES">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <!--苹果web app应用时，图标-->
-    <link rel="apple-touch-icon" href="#">
-    <meta name="format-detection" content="telephone=no">
+    <!--设置标题-->
     <title>Owulia图书商城</title>
-    <link href="../node_modules/bootstrap/dist/css/bootstrap.css">
-    <link href="../public/css/index.css">
+    <!--引入bootstrap-->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!--引入自己的样式-->
+    <link href="../public/css/index.css" rel="stylesheet">
+    <!--IE8兼容媒体查询以及HTML5新元素标签-->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
+    <script src="../public/script/html5shiv.js"></script>
+    <script src="../public/script/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
-    <h1 id="container" v-text="title"></h1>
+
+    <!--导航条-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <!--占据全屏宽度-->
+        <div class="container-fluid">
+            <!--导航条主体-->
+            <div class="navbar-header">
+                <!--小屏幕的时候出现的菜单ICON按钮-->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--/小屏幕的时候出现的菜单ICON按钮-->
+                <!--logo-->
+                <a class="navbar-brand" href="index.html">OWULIA</a>
+                <!--/logo-->
+            </div>
+            <!--/导航条主体-->
+            <!--可变动的导航条-->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-th-large"></span> 分类</a></li>
+                    <!--下拉选项-->
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-info-sign"></span> 我们<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">网站信息</a></li>
+                            <li><a href="#">站长信息</a></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul>
+                    </li>
+                    <!--/下拉选项-->
+                </ul>
+                <!--搜索部分-->
+                <form class="navbar-form navbar-left">
+                    <!--搜索框-->
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索你喜欢的~~~">
+                        <!--搜索按钮-->
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <!--/搜索按钮-->
+                    </div>
+                    <!--/搜索框-->
+                </form>
+                <!--/搜索部分-->
+                <!--导航条右边部分-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                </ul>
+                <!--/导航条右边部分-->
+            </div>
+            <!--/可变动的导航条-->
+        </div>
+        <!--/占据全屏宽度-->
+    </nav>
+    <!--/导航条-->
+
+    <!--轮播图-->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!--轮播图索引-->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+        </ol>
+        <!--/轮播图索引-->
+        <!--轮播图主体 -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="../temp/images/index/01.jpg">
+                <div class="carousel-caption">
+                    <h3>第一张图片</h3>
+                    <p>第一张图片说明</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../temp/images/index/02.jpg">
+                <div class="carousel-caption">
+                    <h3>第二张图片</h3>
+                    <p>第二张图片说明</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../temp/images/index/03.jpg">
+                <div class="carousel-caption">
+                    <h3>第三张图片</h3>
+                    <p>第三张图片说明</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="../temp/images/index/04.jpg">
+                <div class="carousel-caption">
+                    <h3>第四张图片</h3>
+                    <p>第四张图片说明</p>
+                </div>
+            </div>
+        </div>
+        <!--/轮播图主体 -->
+        <!--轮播图按钮 -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </a>
+        <!--/轮播图按钮 -->
+    </div>
+    <!--/轮播图-->
+
+    <!--图书商品部分-->
+    <div class="container">
+
+        <!--最新图书部分-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#" class="glyphicon glyphicon-th-list pull-right" aria-hidden="true"></a>
+                    最新图书
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                             </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/最新图书部分-->
+
+        <!--热门图书部分-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#" class="glyphicon glyphicon-th-list pull-right" aria-hidden="true"></a>
+                    热门图书
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/热门图书部分-->
+
+        <!--经典图书部分-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#" class="glyphicon glyphicon-th-list pull-right" aria-hidden="true"></a>
+                    经典图书
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../temp/images/index/book.jpg">
+                            <div class="caption">
+                                <h4>西游记</h4>
+                                <p class="text-info">查看详情</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/经典图书部分-->
+
+    </div>
+    <!--/图书商品部分-->
+
+    <!--尾部-->
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="footer-link">
+                <a href="#">企业合作</a>
+                <a href="#">意见反馈</a>
+                <a href="#">人才合作</a>
+                <a href="#">友情链接</a>
+                <a href="#">GitHub仓库</a>
+            </div>
+            <p>Copyright © 2016 owulia.com All Rights Reserved | 粤ICP备16081042号</p>
+        </div>
+    </footer>
+    <!--/尾部-->
+
+    <!--引入bootstrap依赖的jquery库-->
+    <script src="../public/script/jquery-1.11.1.min.js"></script>
+    <!--引入bootstrap的js-->
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <!--引入vue.js框架-->
     <script src="../node_modules/vue/dist/vue.js"></script>
+    <!--引入自己的js-->
     <script src="../public/script/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+﻿@charset "utf-8";
+html{-webkit-font-smoothing:antialiased}
+body,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form,button,input,textarea,th,td{margin:0;padding:0}
+body,button,input,select,textarea{font:12px \5FAE\8F6F\96C5\9ED1,arial,\5b8b\4f53}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+address,cite,dfn,em,var,i{font-style:normal}
+code,kbd,pre,samp{font-family:courier new,courier,monospace,arial,\5b8b\4f53}
+form{display:inline}
+small{font-size:12px}
+ul,ol{list-style:none}
+a{text-decoration:none;color:#bebebe}
+a:hover{text-decoration:underline;color:#ba9568}
+sup{vertical-align:text-top}
+sub{vertical-align:text-bottom}
+img{vertical-align:top;border:0;-ms-interpolation-mode:bicubic}
+button,input,select,textarea{font-size:100%}
+table{border-collapse:collapse;border-spacing:0}
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+.clearfix{*zoom:1}
+.clearfix:after{content:'\20';display:block;height:0;clear:both}
+.hidden{display:none}
