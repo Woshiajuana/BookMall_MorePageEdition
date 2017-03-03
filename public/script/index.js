@@ -154,16 +154,12 @@ var BookController = new Vue({
                 card_goods_arr = this.getSessionStorage();
             this.bookArr.forEach(function (item, index) {
                 item.books.forEach(function (book, ind) {
-                    if(card_goods_arr.length == 0)
-                        _this.$set(book,'is_add',false);
-                    else{
-                        card_goods_arr.forEach(function (it, i) {
-                            if(it == book.book_id)
-                                _this.$set(book,'is_add',true);
-                            else
-                                _this.$set(book,'is_add',false);
-                        });
-                    }
+                    _this.$set(book,'is_add',false);
+                    if(card_goods_arr.length == 0) return;
+                    card_goods_arr.forEach(function (it, i) {
+                        if(it == book.book_id)
+                            _this.$set(book,'is_add',true);
+                    });
                 })
             });
         },

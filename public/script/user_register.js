@@ -52,7 +52,7 @@ var UserRegister = new Vue({
             //如果用户存在，则返回网站首页
             this.jumpHome();
         },
-        //登录方法
+        //注册方法
         registerIn: function () {
             //检查用户信息是否填写完整
             if(this.checkNull())
