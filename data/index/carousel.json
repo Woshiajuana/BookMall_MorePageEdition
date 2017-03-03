@@ -1,0 +1,26 @@
+{
+  "status": 1,
+  "msg": "请求数据成功",
+  "result": [
+    {
+      "src": "../temp/images/index/01.jpg",
+      "title": "第一张图片",
+      "prompt": "第一张图片说明"
+    },
+    {
+      "src": "../temp/images/index/02.jpg",
+      "title": "第二张图片",
+      "prompt": "第二张图片说明"
+    },
+    {
+      "src": "../temp/images/index/03.jpg",
+      "title": "第三张图片",
+      "prompt": "第三张图片说明"
+    },
+    {
+      "src": "../temp/images/index/04.jpg",
+      "title": "第四张图片",
+      "prompt": "第四张图片说明"
+    }
+  ]
+}

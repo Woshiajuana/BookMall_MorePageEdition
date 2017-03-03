@@ -2,7 +2,7 @@
 body {
   font-family: "Microsoft Yahei", Arial, "宋体"; }
 
-a, a:hover {
+a, a:hover, a:visited, a:active {
   text-decoration: none; }
 
 /* 轮播广告 */
@@ -22,6 +22,13 @@ a, a:hover {
 .thumbnail img {
   width: 100%;
   height: 100%; }
+
+.carousel-indicators li {
+  margin: 0 5px; }
+  .carousel-indicators li.active {
+    margin: 0 5px;
+    width: 10px;
+    height: 10px; }
 
 .footer {
   margin-top: 50px;

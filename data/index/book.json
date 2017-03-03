@@ -1,0 +1,84 @@
+{
+  "status": 1,
+  "msg": "请求数据成功",
+  "result": [
+    {
+      "title": "最新图书",
+      "url": "more.html",
+      "books": [
+        {
+          "book_id": 1,
+          "name": "西游记1",
+          "price": 32
+        },
+        {
+          "book_id": 2,
+          "name": "西游记2",
+          "price": 32
+        },
+        {
+          "book_id": 3,
+          "name": "西游记3",
+          "price": 32
+        },
+        {
+          "book_id": 4,
+          "name": "西游记4",
+          "price": 32
+        }
+      ]
+    },
+    {
+      "title": "热门图书",
+      "url": "more.html",
+      "books": [
+        {
+          "book_id": 5,
+          "name": "西游记5",
+          "price": 32
+        },
+        {
+          "book_id": 6,
+          "name": "西游记6",
+          "price": 32
+        },
+        {
+          "book_id": 7,
+          "name": "西游记7",
+          "price": 32
+        },
+        {
+          "book_id": 8,
+          "name": "西游记8",
+          "price": 32
+        }
+      ]
+    },
+    {
+      "title": "经典图书",
+      "url": "more.html",
+      "books": [
+        {
+          "book_id": 9,
+          "name": "西游记9",
+          "price": 32
+        },
+        {
+          "book_id": 10,
+          "name": "西游记10",
+          "price": 32
+        },
+        {
+          "book_id": 11,
+          "name": "西游记11",
+          "price": 32
+        },
+        {
+          "book_id": 12,
+          "name": "西游记12",
+          "price": 32
+        }
+      ]
+    }
+  ]
+}

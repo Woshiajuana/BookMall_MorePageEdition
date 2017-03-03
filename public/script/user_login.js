@@ -1,6 +1,25 @@
 /**
  * Created by 2144 on 2017/3/2.
  */
+
+/*
+ 导航条部分
+ */
+var Nav = new Vue({
+    el: '#navBar',
+    data: {
+        nav_is_open: false
+    },
+    methods: {
+        //是否展开导航条
+        openNav: function () {
+            this.nav_is_open = !this.nav_is_open;
+        }
+    }
+});
+/*
+    用户登录
+ */
 var UserLogin = new Vue({
     el: "#user-login",
     data: {
@@ -62,35 +81,33 @@ var UserLogin = new Vue({
         //把用户填写的登录信息传给后台验证
         reqUserLogin: function () {
             //因为还没有做后台所以我是直接做的假数据
-            this.$http.get('../data/login/user.json').then(function (res) {
-                var data = res.body;
-                if(data.status == 0){
-                    this.loginMsg = data.msg;
-                    return;
-                }else if(data.status == 1){
-                    var user = data.user;
-                    if(this.checkUser(user)){
-                        this.loginMsg = '用户名或密码不正确';
-                        return;
-                    }
+            //this.$http.get('../data/login/user.json').then(function (res) {
+            //});
+            //验证LocalStorage的用户信息
+            var _this = this,
+                user_arr = this.getUserForLocalStorage();
+            user_arr.push({
+                user_name: 'woshiajuana',
+                user_password: '123456',
+                email: '979703986@qq.com'
+            });
+            user_arr.forEach(function (item, index) {
+                if(item.user_name == _this.user_name && item.user_password == _this.user_password){
                     //保存用户信息到SessionStorage
-                    this.keepUserForSessionStorage(user);
+                    _this.keepUserForSessionStorage(item);
                     //判断用户是否选择了记住我，保存用户信息到LocalStorage
-                    if(this.isRemUser)
-                        this.keepUserForLocalStorage(user);
+                    if(_this.isRemUser)
+                        _this.keepUserForLocalStorage(item);
                     else
-                        this.deleteUserForLocalStorage();
+                        _this.deleteUserForLocalStorage();
                     //跳转到首页面
-                    this.jumpHome();
+                    _this.jumpHome();
+                    return;
                 }
             });
-        },
-        //验证用户信息是否合法
-        checkUser: function (user) {
-            if(this.user_name == user.user_name && this.user_password == user.user_password){
-                return false;
-            }
-            return true;
+            setTimeout(function () {
+                _this.loginMsg = '用户名或密码不正确';
+            },1000)
         },
         //存取用户信息到HTML5本地缓存中
         keepUserForSessionStorage: function (user) {
@@ -104,6 +121,11 @@ var UserLogin = new Vue({
             user.isRemUser = this.isRemUser;
             user = JSON.stringify(user);
             localStorage.setItem('user',user);
+        },
+        //获取用户信息从HTML5本地缓存中
+        getUserForLocalStorage: function () {
+            var user_arr = localStorage.getItem('user_arr');
+            return user_arr ? JSON.parse(user_arr) : [];
         },
         //删除HTML5本地缓存中的用户信息
         deleteUserForLocalStorage: function () {

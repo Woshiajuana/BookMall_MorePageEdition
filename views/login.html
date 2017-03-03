@@ -11,6 +11,8 @@
     <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <!--引入自己的样式-->
     <link href="../public/css/login.css" rel="stylesheet">
+    <!--引入ico-->
+    <link rel="shortcut icon" href="../public/images/favicon.ico">
     <!--IE8兼容媒体查询以及HTML5新元素标签-->
     <!--[if lt IE 9]>
     <script src="../public/script/html5shiv.js"></script>
@@ -20,13 +22,13 @@
 <body>
 
     <!--导航条-->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" id="navBar">
         <!--占据全屏宽度-->
         <div class="container-fluid">
             <!--导航条主体-->
             <div class="navbar-header">
                 <!--小屏幕的时候出现的菜单ICON按钮-->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button @click="openNav()" v-bind:aria-expanded="nav_is_open" v-bind:class="{'collapsed':!nav_is_open}" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -38,7 +40,7 @@
             </div>
             <!--/导航条主体-->
             <!--可变动的导航条-->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div v-bind:class="{'in':nav_is_open}" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <!--导航条右边部分-->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
