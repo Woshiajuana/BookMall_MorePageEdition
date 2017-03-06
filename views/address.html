@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--设置字符编码-->
+    <meta charset="UTF-8">
+    <!--手机开发屏幕自适应-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <!--设置标题-->
+    <title>填写收货地址-Owulia图书商城</title>
+    <!--引入bootstrap-->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!--引入自己的样式-->
+    <link href="../public/css/cart.css" rel="stylesheet">
+    <!--引入ico-->
+    <link rel="shortcut icon" href="../public/images/favicon.ico">
+    <!--IE8兼容媒体查询以及HTML5新元素标签-->
+    <!--[if lt IE 9]>
+    <script src="../public/script/html5shiv.js"></script>
+    <script src="../public/script/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!--导航条-->
+    <nav class="navbar navbar-default navbar-fixed-top" id="navBar">
+        <!--占据全屏宽度-->
+        <div class="container-fluid">
+            <!--导航条主体-->
+            <div class="navbar-header">
+                <!--小屏幕的时候出现的菜单ICON按钮-->
+                <button @click="openNav()" v-bind:aria-expanded="nav_is_open" v-bind:class="{'collapsed':!nav_is_open}" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!--/小屏幕的时候出现的菜单ICON按钮-->
+                <!--logo-->
+                <a class="navbar-brand" href="index.html">OWULIA</a>
+                <!--/logo-->
+            </div>
+            <!--/导航条主体-->
+            <!--可变动的导航条-->
+            <div v-bind:class="{'in':nav_is_open}" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-th-large"></span> 分类</a></li>
+                    <!--下拉选项-->
+                    <li class="dropdown" v-bind:class="{'open':is_about}">
+                        <a href="javascript:;" @click="openAbout()" class="dropdown-toggle"><span class="glyphicon glyphicon-info-sign"></span> 我们<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://www.owulia.com/page/about/about.html">网站信息</a></li>
+                            <li><a href="http://www.owulia.com/page/about/about.html">站长信息</a></li>
+                            <li><a href="http://www.owulia.com/page/about/about.html">联系我们</a></li>
+                        </ul>
+                    </li>
+                    <!--/下拉选项-->
+                </ul>
+                <!--搜索部分-->
+                <form class="navbar-form navbar-left">
+                    <!--搜索框-->
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索你喜欢的~~~">
+                        <!--搜索按钮-->
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        <!--/搜索按钮-->
+                    </div>
+                    <!--/搜索框-->
+                </form>
+                <!--/搜索部分-->
+                <!--导航条右边部分-->
+                <!--用户登录之前-->
+                <ul v-if="!is_login" class="nav navbar-nav navbar-right">
+                    <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
+                    <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
+                </ul>
+                <!--/用户登录之前-->
+                <!--用户登录之后-->
+                <ul v-if="is_login" class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="juser_order.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <span v-text="user_name"></span></a>
+                    </li>
+                    <li>
+                        <a href="cart.html">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            购物车(<strong class="text-danger" v-text="cart_total_goods"></strong>)
+                        </a>
+                    </li>
+                    <li><a href="javascript:;" @click="loginOut()"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                </ul>
+                <!--/用户登录之后-->
+                <!--/导航条右边部分-->
+            </div>
+            <!--/可变动的导航条-->
+        </div>
+        <!--/占据全屏宽度-->
+    </nav>
+    <!--/导航条-->
+
+    <!--填写地址主体-->
+    <div class="container user-container" id="address">
+        <ol class="breadcrumb">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="cart.html">我的购物车</a></li>
+            <li class="active ">填写地址</li>
+        </ol>
+        <ul class="cart-status">
+            <li class="cart-status-item cart-active">
+                <span class="cart-item-icon"></span>
+                <span class="cart-item-text">选择商品</span>
+            </li>
+            <li class="cart-status-item cart-active">
+                <span class="cart-item-icon"></span>
+                <span class="cart-item-text">填写地址</span>
+            </li>
+            <li class="cart-status-item">
+                <span class="cart-item-icon"></span>
+                <span class="cart-item-text">购物完成</span>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-md-3 col-xs-12 col-sm-6" v-for="(item,index) in address_arr">
+                <div class="address-item" v-bind:class="{'default':item.is_address_default,'address-active':index==address_active_index}" @click="selectAddress(index)">
+                    <dl>
+                        <dt v-text="item.address_user_name"></dt>
+                        <dd v-text="item.address_name"></dd>
+                        <dd v-text="item.address_tel"></dd>
+                    </dl>
+                    <span class="address-update" @click="updateAddressConfirm(item)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </span>
+                    <span class="address-default-set" @click="setDefaultAddress(item,$event)">设为默认地址</span>
+                    <span class="address-default text-primary">默认地址</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-xs-12 col-sm-6">
+                <div class="address-item add-address" @click="addAddressConfirm()">
+                    <span class="address-icon glyphicon glyphicon-plus"></span>
+                    <span class="add-address-text">添加收货地址</span>
+                </div>
+            </div>
+        </div>
+        <h3>确认商品</h3>
+        <table class="table text-center table-striped table-hover">
+            <thead>
+            <tr>
+                <th>图书名</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>总价</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(item,index) in goods_arr">
+                <td v-text="item.name"></td>
+                <td>{{ item.price | moneyForRMB}}</td>
+                <td v-text="item.number"></td>
+                <td>{{item.price * item.number | moneyForRMB}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>总价：<span class="text-danger">{{ total_price | moneyForRMB}}</span></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-4">
+                <button class="btn btn-block btn-success" @click="nextStep()">下一步</button>
+            </div>
+        </div>
+        <div class="modal-backdrop fade" v-bind:class="{'in':is_open_popup}" @click="closePopup()"></div>
+        <div class="modal fade" id="popup" v-bind:class="{'in':is_open_popup}">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" @click="closePopup()"><span class="glyphicon glyphicon-remove-sign"></span></button>
+                        <h4 class="modal-title">添加收货地址</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center text-danger" v-text="popup_msg"></p>
+                        <form>
+                            <div class="form-group">
+                                <label for="address_user_name" class="control-label">收货人：</label>
+                                <input type="text" v-model="address_user_name" class="form-control" id="address_user_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="address_tel" class="control-label">联系电话:</label>
+                                <input type="tel" v-model="address_tel" class="form-control" id="address_tel">
+                            </div>
+                            <div class="form-group">
+                                <label for="address-text" class="control-label">收货地址:</label>
+                                <textarea class="form-control" v-model="address_name" id="address-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" @click="addAddress()">确定</button>
+                        <button type="button" class="btn btn-default" @click="closePopup()">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/填写地址主体-->
+
+    <!--尾部-->
+    <footer class="footer">
+        <div class="container text-center">
+            <div class="footer-link">
+                <a href="http://web.2144.cn/" target="_blank">企业合作</a>
+                <a href="http://www.owulia.com/page/message/message.html" target="_blank">意见反馈</a>
+                <a href="http://www.owulia.com/page/about/about.html" target="_blank">人才合作</a>
+                <a href="http://www.owulia.com/" target="_blank">友情链接</a>
+                <a href="https://github.com/Woshiajuana/BookMall_MorePageEdition" target="_blank">GitHub仓库</a>
+            </div>
+            <p>Copyright © 2016 owulia.com All Rights Reserved | 粤ICP备16081042号</p>
+        </div>
+    </footer>
+    <!--/尾部-->
+
+    <!--引入vue.js框架-->
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-resource/dist/vue-resource.js"></script>
+    <!--引入自己的js-->
+    <script src="../public/script/address.js"></script>
+</body>
+</html>

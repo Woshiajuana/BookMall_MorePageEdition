@@ -5,6 +5,9 @@
 .rem-icon {
   position: absolute; }
 
+body {
+  font-family: "Microsoft Yahei", Arial, "宋体"; }
+
 .user-container {
   min-height: 650px;
   margin-top: 170px; }

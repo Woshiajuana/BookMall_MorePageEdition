@@ -9,7 +9,7 @@ var Nav = new Vue({
     data: {
         is_login: false,
         user_name: '',
-        car_total_goods: 0,
+        cart_total_goods: 0,
         nav_is_open: false,
         is_about: false
     },
@@ -33,19 +33,19 @@ var Nav = new Vue({
             user = JSON.parse(user);
             this.user_name = user.user_name;
             //获取用户购物车商品数量
-            this.car_total_goods = this.getGoodForCard();
+            this.cart_total_goods = this.getGoodForCart();
         },
         //获取用户购物车信息
-        getGoodForCard: function () {
-            var card = sessionStorage.getItem('card');
-            return card ? JSON.parse(card).length : 0;
+        getGoodForCart: function () {
+            var cart = sessionStorage.getItem('cart');
+            return cart ? JSON.parse(cart).length : 0;
         },
         //用户安全退出的方法
         loginOut: function () {
             this.is_login = false;
             this.deleteUserForSessionStorage();
-            sessionStorage.removeItem('card');
-            BookController.seeAddedCardForGoods();
+            sessionStorage.clear();
+            BookController.seeAddedCartForGoods();
         },
         //删除HTML5本地缓存中的用户信息
         deleteUserForSessionStorage: function () {
@@ -117,7 +117,7 @@ var Carousel = new Vue({
     }
 });
 /*
- 轮播图部分
+ 图书部分
  */
 var BookController = new Vue({
     el: '#container',
@@ -145,19 +145,19 @@ var BookController = new Vue({
                 var data = res.body;
                 if(data.status != 1) return;
                 this.bookArr = data.result;
-                this.seeAddedCardForGoods();
+                this.seeAddedCartForGoods();
             });
         },
         //查看哪些商品已添加到了购物车
-        seeAddedCardForGoods: function () {
+        seeAddedCartForGoods: function () {
             var _this = this,
-                card_goods_arr = this.getSessionStorage();
+                cart_goods_arr = this.getSessionStorage();
             this.bookArr.forEach(function (item, index) {
                 item.books.forEach(function (book, ind) {
                     _this.$set(book,'is_add',false);
-                    if(card_goods_arr.length == 0) return;
-                    card_goods_arr.forEach(function (it, i) {
-                        if(it == book.book_id)
+                    if(cart_goods_arr.length == 0) return;
+                    cart_goods_arr.forEach(function (it, i) {
+                        if(it.book_id == book.book_id)
                             _this.$set(book,'is_add',true);
                     });
                 })
@@ -170,36 +170,36 @@ var BookController = new Vue({
                 this.jumpLogin();
             else{
                 book.is_add = true;
-                this.keepBookForCard(book.book_id);
+                this.keepBookForCart(book);
             }
         },
         //从购物车移除
         removeCart: function (book) {
             book.is_add = false;
-            var card = this.getSessionStorage();
-            card.forEach(function (item, index) {
-                if(item == book.book_id){
-                    card.splice(index,1);
+            var cart = this.getSessionStorage();
+            cart.forEach(function (item, index) {
+                if(item.book_id == book.book_id){
+                    cart.splice(index,1);
                     return;
                 }
             });
-            sessionStorage.setItem('card',JSON.stringify(card));
+            sessionStorage.setItem('cart',JSON.stringify(cart));
             //改变商品数量
-            if(Nav.$data.car_total_goods > 0) Nav.$data.car_total_goods--;
+            if(Nav.$data.cart_total_goods > 0) Nav.$data.cart_total_goods--;
         },
         //存储数据到购物车
-        keepBookForCard: function (book_id) {
+        keepBookForCart: function (book) {
             //首先获取session本地缓存里的购物车信息
-            var card = this.getSessionStorage();
-            card.push(book_id);
-            sessionStorage.setItem('card',JSON.stringify(card));
+            var cart = this.getSessionStorage();
+            cart.push(book);
+            sessionStorage.setItem('cart',JSON.stringify(cart));
             //改变商品数量
-            Nav.$data.car_total_goods++;
+            Nav.$data.cart_total_goods++;
         },
         //获取session本地缓存里的购物车信息
         getSessionStorage: function () {
-            var card = sessionStorage.getItem('card');
-            return card ? JSON.parse(sessionStorage.getItem('card')) : [];
+            var cart = sessionStorage.getItem('cart');
+            return cart ? JSON.parse(sessionStorage.getItem('cart')) : [];
         },
         //跳转登录页面
         jumpLogin: function () {

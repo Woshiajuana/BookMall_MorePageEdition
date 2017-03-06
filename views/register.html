@@ -28,7 +28,7 @@
             <!--导航条主体-->
             <div class="navbar-header">
                 <!--小屏幕的时候出现的菜单ICON按钮-->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button @click="openNav()" v-bind:aria-expanded="nav_is_open" v-bind:class="{'collapsed':!nav_is_open}" type="button" class="navbar-toggle">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -40,7 +40,7 @@
             </div>
             <!--/导航条主体-->
             <!--可变动的导航条-->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div v-bind:class="{'in':nav_is_open}" class="collapse navbar-collapse">
                 <!--导航条右边部分-->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
@@ -64,45 +64,47 @@
                     </div>
                     <div class="panel-body">
                         <p class="panel-error text-center text-danger" v-text="register_msg"></p>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="inputName" class="col-sm-2 control-label glyphicon glyphicon-user"></label>
-                                <div class="col-sm-10">
-                                    <input type="email" @input="checkRepeatUser()" autocomplete="off" v-model="user_name" class="form-control" id="inputName" placeholder="请输入用户名">
+                        <form>
+                            <div class="form-group has-feedback">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="inputName"><span class="glyphicon glyphicon-user"></span></label>
+                                    <input type="text" @input="checkRepeatUser()" v-model="user_name" autocomplete="off" class="form-control" id="inputName" placeholder="请输入用户名">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputPassword" class="col-sm-2 control-label glyphicon glyphicon-lock"></label>
-                                <div class="col-sm-10">
-                                    <input type="password" autocomplete="off" v-model="user_password" class="form-control" id="inputPassword" placeholder="请输入密码">
+                            <div class="form-group has-feedback">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="inputPassword"><span class="glyphicon glyphicon-lock"></span></label>
+                                    <input type="password" v-model="user_password" autocomplete="off" class="form-control" id="inputPassword" placeholder="请输入密码">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputPasswordToo" class="col-sm-2 control-label glyphicon glyphicon-lock"></label>
-                                <div class="col-sm-10">
-                                    <input type="password" autocomplete="off" v-model="user_password_too" class="form-control" id="inputPasswordToo" placeholder="请确认密码">
+                            <div class="form-group has-feedback">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="inputPasswordToo"><span class="glyphicon glyphicon-lock"></span></label>
+                                    <input type="password" v-model="user_password_too" autocomplete="off" class="form-control" id="inputPasswordToo" placeholder="请确认密码">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputEmail" class="col-sm-2 control-label glyphicon glyphicon-envelope"></label>
-                                <div class="col-sm-10">
-                                    <input type="password" autocomplete="off" v-model="user_email" class="form-control" id="inputEmail" placeholder="请输入邮箱">
+                            <div class="form-group has-feedback">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="inputEmail"><span class="glyphicon glyphicon-envelope"></span></label>
+                                    <input type="email" v-model="user_email" autocomplete="off" class="form-control" id="inputEmail" placeholder="请输入邮箱">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label class="rem-box" v-bind:class="{'active':is_agree}" @click="agreementUser()">
-                                            <span class="rem-icon"></span>
-                                            勾选即同意《OWULIA服务协议》
-                                        </label>
+                            <div class="form-group has-feedback">
+                                <div class="checkbox">
+                                    <label class="rem-box" v-bind:class="{'active':is_agree}" @click="agreementUser()">
+                                        <span class="rem-icon"></span>
+                                        勾选即同意《OWULIA服务协议》
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <div class="row">
+                                    <div class="col-md-9 col-xs-9">
+                                        <button type="button" class="btn btn-default btn-block" @click="registerIn()">注册</button>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" @click="registerIn()">注册</button>
-                                    <button type="button" class="btn btn-default" @click="resetInput()">重置</button>
+                                    <div class="col-md-3 col-xs-3">
+                                        <button type="button" class="btn btn-default btn-block" @click="resetInput()">重置</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

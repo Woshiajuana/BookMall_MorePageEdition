@@ -1,4 +1,7 @@
 @import "define";
+body{
+  font-family: "Microsoft Yahei", Arial, "宋体";
+}
 .user-container{
   min-height: 650px;
   margin-top: 170px;
@@ -6,6 +9,8 @@
 .panel-error{
   height: 20px;
 }
+
+
 .rem-box{
   @extend %pr;
   &.active{

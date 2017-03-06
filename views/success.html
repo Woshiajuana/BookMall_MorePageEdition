@@ -6,11 +6,11 @@
     <!--手机开发屏幕自适应-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <!--设置标题-->
-    <title>Owulia图书商城</title>
+    <title>购物成功-Owulia图书商城</title>
     <!--引入bootstrap-->
     <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <!--引入自己的样式-->
-    <link href="../public/css/index.css" rel="stylesheet">
+    <link href="../public/css/cart.css" rel="stylesheet">
     <!--引入ico-->
     <link rel="shortcut icon" href="../public/images/favicon.ico">
     <!--IE8兼容媒体查询以及HTML5新元素标签-->
@@ -42,7 +42,7 @@
             <!--可变动的导航条-->
             <div v-bind:class="{'in':nav_is_open}" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+                    <li><a href="index.html"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-th-large"></span> 分类</a></li>
                     <!--下拉选项-->
                     <li class="dropdown" v-bind:class="{'open':is_about}">
@@ -61,11 +61,11 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="搜索你喜欢的~~~">
                         <!--搜索按钮-->
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
                         <!--/搜索按钮-->
                     </div>
                     <!--/搜索框-->
@@ -100,73 +100,70 @@
     </nav>
     <!--/导航条-->
 
-    <!--轮播图-->
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <!--轮播图索引-->
-        <ol class="carousel-indicators">
-            <li v-for="( item, index ) in carouselArr" @click="switchCarouselByTrigger(index)" v-bind:data-slide-to="index" v-bind:class="{'active': index == active_index}" data-target="#carousel-example-generic"></li>
+    <!--填写地址主体-->
+    <div class="container user-container" id="order">
+        <ol class="breadcrumb">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="cart.html">我的购物车</a></li>
+            <li><a href="address.html">填写地址</a></li>
+            <li class="active ">完成购物</li>
         </ol>
-        <!--/轮播图索引-->
-        <!--轮播图主体 -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item" v-for="( item, index ) in carouselArr" v-bind:class="{'active': index == active_index}">
-                <img v-bind:src="item.src">
-                <div class="carousel-caption">
-                    <h3 v-text="item.title"></h3>
-                    <p v-text="item.prompt"></p>
-                </div>
+        <ul class="cart-status">
+            <li class="cart-status-item cart-active">
+                <span class="cart-item-icon"></span>
+                <span class="cart-item-text">选择商品</span>
+            </li>
+            <li class="cart-status-item cart-active">
+                <span class="cart-item-icon"></span>
+                <span class="cart-item-text">填写地址</span>
+            </li>
+            <li class="cart-status-item cart-active">
+                <span class="cart-item-icon"></span>
+                <span class="cart-item-text">购物完成</span>
+            </li>
+        </ul>
+        <p class="goods-prompt text-center">
+            购物已完成~~~<br/>
+        </p>
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span>订单号：</span>
+                        <span v-text="order.id"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>商品：</span>
+                        <span v-text="order.goods"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>总价：</span>
+                        <span>{{order.price | moneyForRMB}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>订单时间：</span>
+                        <span v-text="order.time"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>收货人：</span>
+                        <span v-text="order.user_name"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>联系电话：</span>
+                        <span v-text="order.user_tel"></span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>收货地址：</span>
+                        <span v-text="order.user_address"></span>
+                    </li>
+                </ul>
             </div>
         </div>
-        <!--/轮播图主体 -->
-        <!--轮播图按钮 -->
-        <a class="left carousel-control" href="javascript:;" role="button" data-slide="prev" @click="switchCarouselByBtn(-1)">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        </a>
-        <a class="right carousel-control" href="javascript:;" role="button" data-slide="next" @click="switchCarouselByBtn(1)">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        </a>
-        <!--/轮播图按钮 -->
+        <p class="goods-prompt text-center">
+            <a href="index.html" class="btn btn-info">还逛逛~~~</a>
+        </p>
     </div>
-    <!--/轮播图-->
-
-    <!--图书商品部分-->
-    <div class="container" id="container">
-
-        <!--图书部分-->
-        <div class="panel panel-default" v-for="( panel, panel_index) in bookArr">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a v-bind:href="panel.url" class="glyphicon glyphicon-th-list pull-right" aria-hidden="true"></a>
-                    {{panel.title}}
-                </h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-6 col-md-3" v-for="( book, book_index) in panel.books">
-                        <a href="javascript:;" class="thumbnail">
-                            <img v-bind:src="book.src">
-                            <div class="caption">
-                                <h4 v-text="book.name"></h4>
-                                <p class="text-info">
-                                    <span v-if="!book.is_add" @click="addCart(book)">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                        加入购物车
-                                    </span>
-                                    <span v-if="book.is_add" @click="removeCart(book)">
-                                        已加入购物车
-                                    </span>
-                                    <strong class="pull-right text-danger">{{book.price | moneyForRMB}}</strong>
-                                </p>
-                             </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/最新图书部分-->
-
-    </div>
-    <!--/图书商品部分-->
+    <!--/填写地址主体-->
 
     <!--尾部-->
     <footer class="footer">
@@ -186,9 +183,7 @@
     <!--引入vue.js框架-->
     <script src="../node_modules/vue/dist/vue.js"></script>
     <script src="../node_modules/vue-resource/dist/vue-resource.js"></script>
-
     <!--引入自己的js-->
-    <script src="../public/script/index.js"></script>
-
+    <script src="../public/script/success.js"></script>
 </body>
 </html>

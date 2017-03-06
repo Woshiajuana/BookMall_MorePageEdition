@@ -9,22 +9,26 @@
         {
           "book_id": 1,
           "name": "西游记1",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 2,
           "name": "西游记2",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 3,
           "name": "西游记3",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 4,
           "name": "西游记4",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         }
       ]
     },
@@ -35,22 +39,26 @@
         {
           "book_id": 5,
           "name": "西游记5",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 6,
           "name": "西游记6",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 7,
           "name": "西游记7",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 8,
           "name": "西游记8",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         }
       ]
     },
@@ -61,22 +69,26 @@
         {
           "book_id": 9,
           "name": "西游记9",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 10,
           "name": "西游记10",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 11,
           "name": "西游记11",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         },
         {
           "book_id": 12,
           "name": "西游记12",
-          "price": 32
+          "price": 32,
+          "src": "../temp/images/index/book.jpg"
         }
       ]
     }

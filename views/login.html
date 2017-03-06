@@ -28,7 +28,7 @@
             <!--导航条主体-->
             <div class="navbar-header">
                 <!--小屏幕的时候出现的菜单ICON按钮-->
-                <button @click="openNav()" v-bind:aria-expanded="nav_is_open" v-bind:class="{'collapsed':!nav_is_open}" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <button @click="openNav()" v-bind:aria-expanded="nav_is_open" v-bind:class="{'collapsed':!nav_is_open}" type="button" class="navbar-toggle">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -40,7 +40,7 @@
             </div>
             <!--/导航条主体-->
             <!--可变动的导航条-->
-            <div v-bind:class="{'in':nav_is_open}" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div v-bind:class="{'in':nav_is_open}" class="collapse navbar-collapse">
                 <!--导航条右边部分-->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
@@ -64,33 +64,29 @@
                     </div>
                     <div class="panel-body">
                         <p class="panel-error text-center text-danger" v-text="loginMsg"></p>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="inputUserName" class="col-sm-2 control-label glyphicon glyphicon-user"></label>
-                                <div class="col-sm-10">
-                                    <input v-model="user_name" type="email" class="form-control" autocomplete="off" id="inputUserName" placeholder="请输入用户名">
+                        <form>
+                            <div class="form-group has-feedback">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="inputName"><span class="glyphicon glyphicon-user"></span></label>
+                                    <input type="text" v-model="user_name" autocomplete="off" class="form-control" id="inputName" placeholder="请输入用户名">
+                                </div>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <div class="input-group">
+                                    <label class="input-group-addon" for="inputPassword"><span class="glyphicon glyphicon-lock"></span></label>
+                                    <input type="text" v-model="user_password" autocomplete="off" class="form-control" id="inputPassword" placeholder="请输入密码">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputPassword" class="col-sm-2 control-label glyphicon glyphicon-lock"></label>
-                                <div class="col-sm-10">
-                                    <input v-model="user_password" type="password" class="form-control" autocomplete="off" id="inputPassword" placeholder="请输入密码">
+                                <div class="checkbox">
+                                    <label class="rem-box" v-bind:class="{'active':isRemUser}" @click="remUser()">
+                                        <span class="rem-icon"></span>
+                                        记住我
+                                    </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label class="rem-box" v-bind:class="{'active':isRemUser}" @click="remUser()">
-                                            <span class="rem-icon"></span>
-                                            记住我
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="button" class="btn btn-default" @click="loginIn()">登录</button>
-                                </div>
+                            <div class="form-group text-center">
+                                <button type="button" class="btn btn-default btn-block" @click="loginIn()">登录</button>
                             </div>
                         </form>
                     </div>

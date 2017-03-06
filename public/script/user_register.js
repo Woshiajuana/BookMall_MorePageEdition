@@ -118,7 +118,7 @@ var UserRegister = new Vue({
                 user_arr = this.getUserForLocalStorage();
             user_arr.forEach(function (item,index) {
                 if(item.user_name == _this.user_name){
-                    this.register_msg = '用户名已存在';
+                    _this.register_msg = '用户名已存在';
                     type = true;
                 }
             });
